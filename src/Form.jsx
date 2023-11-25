@@ -1,44 +1,31 @@
-// ProductForm.jsx
 import React, { useState, useEffect } from 'react';
-import {
-  TextField,
-  Button,
-  Container,
-  Typography,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-} from '@mui/material';
+import { TextField,Button, FormControl,InputLabel,Select,MenuItem,Dialog, DialogTitle, DialogContent, DialogActions,} from '@mui/material';
+import style from './form.module.css'
 
 const ProductForm = ({ Data, selectedProduct }) => {
   const [open, setOpen] = useState(false);
   const [formData, setFormData] = useState({
     category: '',
     subCategory: '',
-    companyName: '', // Change from 'productCenterName' to 'companyName'
+    companyName: '', 
     price: '',
-    ProductDetails: '', // Change from 'otherDetails' to 'ProductDetails'
+    ProductDetails: '', 
   });
 
   useEffect(() => {
     if (selectedProduct) {
-      // If selectedProduct prop is provided, populate the form with its data
+
       setFormData(selectedProduct);
       setOpen(true);
       console.log(selectedProduct);
     } else {
-      // If no selectedProduct, reset the form data
+
       setFormData({
         category: '',
         subCategory: '',
-        companyName: '', // Change from 'productCenterName' to 'companyName'
+        companyName: '', 
         price: '',
-        ProductDetails: '', // Change from 'otherDetails' to 'ProductDetails'
+        ProductDetails: '', 
       });
     }
   }, [selectedProduct]);
@@ -61,7 +48,7 @@ const ProductForm = ({ Data, selectedProduct }) => {
       case 'electronics':
         return ['charger', 'phone'];
       case 'vegetables':
-        return ['tomato', 'carrot', 'cucumber']; // Add more vegetables as needed
+        return ['tomato', 'carrot', 'cucumber']; 
       default:
         return [];
     }
@@ -70,20 +57,22 @@ const ProductForm = ({ Data, selectedProduct }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     Data(formData);
-    handleClose(); // Close the modal after submission
+    handleClose(); 
   };
 
+  
   return (
-    <div>
+
+    <div className={style.form}>
       <Button variant="contained" color="primary" onClick={handleOpen}>
-        Open Form
+        Add Product
       </Button>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Product Form</DialogTitle>
         <DialogContent>
           <form onSubmit={handleSubmit}>
             <TextField
-              label="Company Name" // Change from 'Product Center Name' to 'Company Name'
+              label="Company Name" 
               name="companyName"
               fullWidth
               margin="normal"
@@ -102,7 +91,7 @@ const ProductForm = ({ Data, selectedProduct }) => {
               >
                 <MenuItem value="electronics">Electronics</MenuItem>
                 <MenuItem value="vegetables">Vegetables</MenuItem>
-                {/* Add more categories as needed */}
+
               </Select>
             </FormControl>
             <FormControl fullWidth margin="normal" variant="outlined">
@@ -131,7 +120,7 @@ const ProductForm = ({ Data, selectedProduct }) => {
               onChange={handleInputChange}
             />
             <TextField
-              label="Product Details" // Change from 'Other Details' to 'Product Details'
+              label="Product Details" 
               name="ProductDetails"
               fullWidth
               margin="normal"
@@ -153,6 +142,7 @@ const ProductForm = ({ Data, selectedProduct }) => {
         </DialogContent>
       </Dialog>
     </div>
+
   );
 };
 
