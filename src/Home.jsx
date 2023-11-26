@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Form from '../src/Form';
 import AdminDashboard from '../src/Admin';
-import style from './home.module.css';
 
 
 function Home() {

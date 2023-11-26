@@ -57,6 +57,13 @@ const ProductForm = ({ Data, selectedProduct }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     Data(formData);
+    setFormData({
+      category: '',
+      subCategory: '',
+      companyName: '', 
+      price: '',
+      ProductDetails: '', 
+    });
     handleClose(); 
   };
 
